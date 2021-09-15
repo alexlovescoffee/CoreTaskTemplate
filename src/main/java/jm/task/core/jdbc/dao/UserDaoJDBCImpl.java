@@ -22,9 +22,8 @@ public class UserDaoJDBCImpl implements UserDao {
             if (!con.getMetaData().getTables(null, null, "users", new String[]{"TABLE"}).next()) {
                 con.prepareStatement(SQL.get("create_users_table")).executeUpdate();
                 logger.log(Level.INFO, "Таблица {0} создана!", SQL.get("table"));
-            } else {
+            } else
                 logger.log(Level.INFO, "Таблица {0} уже существует!", SQL.get("table"));
-            }
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Не удалось создать таблицу!", e);
         }
@@ -35,9 +34,8 @@ public class UserDaoJDBCImpl implements UserDao {
             if (con.getMetaData().getTables(null, null, "users", new String[]{"TABLE"}).next()) {
                 con.prepareStatement(SQL.get("drop_users_table")).executeUpdate();
                 logger.log(Level.INFO, "Таблица {0} удалена!", SQL.get("table"));
-            } else {
+            } else
                 logger.log(Level.INFO, "Таблица {0} не существует!", SQL.get("table"));
-            }
         } catch (SQLException e) {
             logger.log(Level.SEVERE, "Не удалось удалить таблицу!", e);
         }
